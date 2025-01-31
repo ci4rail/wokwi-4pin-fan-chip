@@ -65,7 +65,7 @@ void chip_init(void)
   chip->tacho_timer = timer_init(&tacho_timer_config);
 
   chip->framebuffer = framebuffer_init(&chip->width, &chip->height);
-  printf("Framebuffer: width=%d, height=%d\n", chip->width, chip->height);
+  //printf("Framebuffer: width=%d, height=%d\n", chip->width, chip->height);
 
   chip->break_attr = attr_init_float("break", 0);
 }
@@ -187,6 +187,6 @@ void tacho_timer_start(chip_state_t *chip)
     return;
   }
   double period = rpm_to_tacho_period(chip->rpm);
-  printf("Tacho period: %f us\n", period * 1E6);
+  //printf("Tacho period: %f us\n", period * 1E6);
   timer_start(chip->tacho_timer, period * 1E6, false);
 }

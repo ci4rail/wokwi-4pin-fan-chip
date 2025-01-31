@@ -24,7 +24,7 @@ To use this chip in your project, include it as a dependency in your `diagram.js
 
 ```json
   "dependencies": {
-    "chip-hdc2010": "github:ci4rail/wokwi-4pin-fan-chip@1.0.0"
+    "chip-4pin-fan": "github:ci4rail/wokwi-4pin-fan-chip@1.0.0"
   }
 ```
 
@@ -33,7 +33,7 @@ Then, add the chip to your circuit by adding a `chip-4pin-fan` item to the `part
 ```json
   "parts": {
     ...,
-    { "type": "chip-4pin-fan", "id": "fan1", "attrs": { "channels": 1 } }
+    { "type": "chip-4pin-fan", "id": "fan1", "attrs": {} }
   },
 ```
 
