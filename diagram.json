@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "author": "popples",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "chip-4pin-fan", "id": "fan1", "top": 39.42, "left": -177.6, "attrs": {} },
+    {
+      "type": "chip-pwm",
+      "id": "pwm1",
+      "top": -75.78,
+      "left": -194.99,
+      "attrs": { "coefficientHz": "10", "exponentHz": "2", "duty": "50" }
+    },
+    {
+      "type": "chip-scope",
+      "id": "scope1",
+      "top": -85.38,
+      "left": 33.6,
+      "attrs": {
+        "sampleTimeUs": "2",
+        "sampleTimeMs": "0",
+        "triggerChannel": "1",
+        "triggerMode": "1",
+        "crtColor": "0",
+        "trace0Color": "14",
+        "trace1Color": "12",
+        "trace2Color": "10",
+        "trace3Color": "2"
+      }
+    }
+  ],
+  "connections": [
+    [ "pwm1:OUT", "fan1:PWM", "blue", [ "v0", "h28.8", "v115.2" ] ],
+    [ "pwm1:OUT", "scope1:D0", "blue", [ "h28.8", "v-19.2" ] ],
+    [ "fan1:TACHO", "scope1:D1", "orange", [ "h69.01", "v-115.2" ] ]
+  ],
+  "dependencies": {
+    "chip-pwm": "github:Dlloydev/Wokwi-Chip-PWM@1.0.6",
+    "chip-scope": "github:Dlloydev/Wokwi-Chip-Scope@1.0.7"
+  }
+}
