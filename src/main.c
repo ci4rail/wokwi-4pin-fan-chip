@@ -93,17 +93,17 @@ static void pwm_pin_change(void *user_data, pin_t pin, uint32_t value)
         chip->duty_cycle = (now - chip->last_pwm_high) / (double)chip->period;
         double org_rpm = chip->rpm;
         chip->rpm = duty_to_rpm(chip->duty_cycle);
-        // float break_value = attr_read_float(chip->break_attr);
+        float break_value = attr_read_float(chip->break_attr);
 
-        // if (break_value > 0.0)
-        // {
-        //   chip->rpm *= (1.0 - break_value);
-        // }
+        if (break_value > 0.0)
+        {
+          chip->rpm *= (1.0 - break_value);
+        }
 
-        // if (org_rpm == 0.0 && chip->rpm > 0.0)
-        // {
-        //   tacho_timer_start(chip);
-        // }
+        if (org_rpm == 0.0 && chip->rpm > 0.0)
+        {
+          tacho_timer_start(chip);
+        }
       }
     }
   }
