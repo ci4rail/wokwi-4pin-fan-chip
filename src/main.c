@@ -112,6 +112,13 @@ static void pwm_pin_change(void *user_data, pin_t pin, uint32_t value)
 static void on_report_timer(void *user_data)
 {
   chip_state_t *chip = (chip_state_t *)user_data;
+
+  if(get_sim_nanos() - chip->last_pwm_high > 1E6)
+  {
+    chip->duty_cycle = 0.0;
+    chip->rpm = 0.0;
+  }
+
   printf("%d: Period: %llu, Duty Cycle: %f RPM: %f\n", chip->report_count, chip->period, chip->duty_cycle, chip->rpm);
   draw_rpm(chip, chip->rpm);
   chip->report_count++;
